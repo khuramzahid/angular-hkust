@@ -11,8 +11,9 @@
 
   <div fxFlex>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let dish of dishes">
+      <mat-grid-tile *ngFor="let dish of dishes" (click) = "onSelect(dish)">
         <!-- Structural directives are used for adding, removing and replacing elements in the DOM -->
+        <!-- Event binding that invokes the onSelect method in the companion file. -->
         <img height="200px" src={{dish.image}} alt={{dish.name}}>
         <mat-grid-tile-footer>
           <h1>{{dish.name | uppercase}}</h1>
@@ -21,6 +22,7 @@
     </mat-grid-list>
   </div>
 
-  <app-dishdetail></app-dishdetail>
+  <app-dishdetail [dish] = "selectedDish"></app-dishdetail>
+  <!-- Second kind of Data binding. Kind of like a prop passed in the component. -->
 
 </div>
