@@ -22,6 +22,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
 // NgModule is a decorator for the class AppModule
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LeaderService } from './services/leader.service';
     FooterComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,13 +46,18 @@ import { LeaderService } from './services/leader.service';
     MatButtonModule,
     MatListModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
   providers: [
     DishService, 
     PromotionService,
     LeaderService
   ],
+  entryComponents: [
+    LoginComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// To make this component be opened from another component, you need to declare this as an EntryComponent in the AppModule.
