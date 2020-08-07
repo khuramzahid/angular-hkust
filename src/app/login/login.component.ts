@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import {MatDialog, MatDialogRef} from '@angular/material'; // to make this component into a dialog component.
+import {MatDialog, MatDialogRef} from '@angular/material'; // to make this component into a dialog component.
 // In bootstrap, we have modal to have a component overlay on top of another component.
 // Angular material provides dialog for modal like functionality.
 
@@ -10,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  user = {username: '', password: '', remember: false};
+
+  constructor(public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    console.log('User: ', this.user);
+    this.dialogRef.close();
   }
 
 }
