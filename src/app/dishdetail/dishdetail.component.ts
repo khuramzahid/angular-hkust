@@ -22,6 +22,7 @@ export class DishdetailComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.dishservice.getDish(id)
       .then(dish => this.dish = dish);
+    // method chaining is achieved when all functions use "return this;" at the end.
   }
 
   goBack(): void {
