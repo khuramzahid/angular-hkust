@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // NgModule is a decorator for the class AppModule
 @NgModule({
@@ -62,6 +63,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
   providers: [
