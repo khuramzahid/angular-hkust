@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 
@@ -11,22 +11,18 @@ export class MenuComponent implements OnInit {
   
   dishes: Dish[];
 
-  selectedDish: Dish; // Not assigned by default
   // dishes: Dish[] = DISHES; // TypeScript assign same variable type (Array of Dish)
 
   // Here we are requiring the service which will be provided by the Angular's Dependency Injector.
   // Providers are registered at the app.module.ts
-  constructor(private dishService: DishService) { }
+  constructor(private dishService: DishService,
+    @Inject('BaseURL') private baseURL) { }
 
   ngOnInit() {
     this.dishService.getDishes()
       .subscribe(dishes => this.dishes = dishes);
   }
-
-  onSelect(dish: Dish) {
-    this.selectedDish = dish;
-  }
-
+  
 }
 
 /* 
