@@ -88,7 +88,17 @@ export class DishdetailComponent implements OnInit {
     this.commentDS = this.commentForm.value;
     this.commentDS.date = new Date().toISOString()
     console.log(this.commentDS);
-    this.dish.comments.push(this.commentDS);
+    this.dishcopy.comments.push(this.commentDS);
+    this.dishservice.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; 
+        this.dishcopy = dish;
+      },
+      errmess => { 
+        this.dish = null; 
+        this.dishcopy = null; 
+        this.errMess = <any>errmess; 
+      });
 
     this.commentForm.reset({
       rating: 5,
@@ -104,7 +114,8 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+        errmess => this.errMess = <any>errmess );
     // method chaining is achieved when all functions use "return this;" at the end.
     // switchMap is used here to replace the params observable value with the value from another observable getDish
     // params is an array which means it can be taken as a Read stream. We can pipe read streams.
