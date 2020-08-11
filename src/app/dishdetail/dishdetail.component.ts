@@ -7,7 +7,7 @@ import { Comment } from '../shared/comment';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { visibility } from '../animations/app.animation';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation';
 
 @Component({
   selector: 'app-dishdetail',
@@ -19,7 +19,8 @@ import { flyInOut } from '../animations/app.animation';
   },
   animations: [
     visibility(),
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class DishdetailComponent implements OnInit {
