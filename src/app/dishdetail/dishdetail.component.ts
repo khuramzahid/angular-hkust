@@ -6,11 +6,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+/*
 
+void state: element is not attached to a view.
+"*" any state: wildcard
+Animations are applied to transitions of states.
+void => * is equivalent to :enter, meaning it has entered the view.
+* => void is equivalent to :leave, meaning it has left the view.
+
+
+*/
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+    trigger('visibility', [
+        state('shown', style({
+            transform: 'scale(1.0)',
+            opacity: 1
+        })),
+        state('hidden', style({
+            transform: 'scale(0.5)',
+            opacity: 0
+        })),
+        transition('* => *', animate('0.5s ease-in-out'))
+    ])
+  ]
 })
 export class DishdetailComponent implements OnInit {
 
@@ -116,6 +139,17 @@ export class DishdetailComponent implements OnInit {
       .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
         errmess => this.errMess = <any>errmess );
+    this.route.params
+      .pipe(switchMap((params: Params) => { 
+        this.visibility = 'hidden'; // Hiding the current shown dish.
+        return this.dishservice.getDish(+params['id']); 
+      }))
+      .subscribe(dish => { 
+        this.dish = dish; 
+        this.dishcopy = dish; 
+        this.setPrevNext(dish.id); 
+        this.visibility = 'shown'; // Showing the newly received dish from the service.
+      },errmess => this.errMess = <any>errmess);
     // method chaining is achieved when all functions use "return this;" at the end.
     // switchMap is used here to replace the params observable value with the value from another observable getDish
     // params is an array which means it can be taken as a Read stream. We can pipe read streams.
