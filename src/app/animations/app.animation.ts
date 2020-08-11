@@ -1,5 +1,15 @@
 import { trigger, state, style, animate, transition } from '@angular/animations';
+/*
 
+void state: element is not attached to a view.
+"*" any state: wildcard
+Animations are applied to transitions of states.
+void => * is equivalent to :enter, meaning it has entered the view.
+* => void is equivalent to :leave, meaning it has left the view.
+
+
+*/
+// Below are factory functions (visibility and flyInOut)
 export function visibility() {
     return trigger('visibility', [
         state('shown', style({
@@ -11,5 +21,18 @@ export function visibility() {
             opacity: 0
         })),
         transition('* => *', animate('0.5s ease-in-out'))
+    ]);
+}
+
+export function flyInOut() {
+    return trigger('flyInOut', [
+        state('*', style({ opacity: 1, transform: 'translateX(0)'})),
+        transition(':enter', [
+            style({ transform: 'translateX(-100%)', opacity: 0 }),
+            animate('500ms ease-in')
+        ]),
+        transition(':leave', [
+            animate('500ms ease-out', style({ transform: 'translateX(100%)', opacity: 0}))
+        ])
     ]);
 }

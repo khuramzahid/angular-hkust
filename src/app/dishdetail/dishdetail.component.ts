@@ -7,23 +7,19 @@ import { Comment } from '../shared/comment';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { visibility } from '../animations/app.animation';
+import { flyInOut } from '../animations/app.animation';
 
-/*
-
-void state: element is not attached to a view.
-"*" any state: wildcard
-Animations are applied to transitions of states.
-void => * is equivalent to :enter, meaning it has entered the view.
-* => void is equivalent to :leave, meaning it has left the view.
-
-
-*/
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
   animations: [
-    visibility()
+    visibility(),
+    flyInOut()
   ]
 })
 export class DishdetailComponent implements OnInit {
