@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'; // provides *ngIf and *ngFor as well
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Included for animations initially because it was needed for angular material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -36,7 +36,12 @@ import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { FeedbackService } from './services/feedback.service';
 import { HighlightDirective } from './directives/highlight.directive';
-import { SpinnerComponent } from './spinner/spinner.component'; // Becomes available to the entire application. Component within a component.
+import { SpinnerComponent } from './spinner/spinner.component'; // Belongs to this component and nested components (Declarations array in @NgModule decorator). 
+// Component within a component.
+
+// declarations is the array that contains the components that belong to this module.
+// imports are the external modules that are made available to all the components belonging to this module.
+// bootstrap is the startup component of the application. That component must have its selector in index.html
 
 @NgModule({
   declarations: [
