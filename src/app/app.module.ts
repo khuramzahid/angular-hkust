@@ -36,6 +36,7 @@ import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { FeedbackService } from './services/feedback.service';
 import { HighlightDirective } from './directives/highlight.directive';
+import { SpinnerComponent } from './spinner/spinner.component'; // Becomes available to the entire application. Component within a component.
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    HighlightDirective
+    HighlightDirective,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -89,9 +89,7 @@
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
   </div>
-  <div fxFlex *ngIf="showProgressSpinner" [@expand]>
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
+  <app-spinner fxFlex *ngIf="showProgressSpinner" [@expand]></app-spinner>
   <div fxFlex *ngIf="showReturnedFeedback" [@expand]>
     <p>{{feedback | json }}</p>
   </div>
