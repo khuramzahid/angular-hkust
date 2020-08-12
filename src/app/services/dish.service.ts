@@ -12,25 +12,31 @@ import { ProcessHTTPMsgService } from './process-httpmsg.service';
 })
 export class DishService {
 
+  invokeCount = 0;
+
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
+    console.log("Invoke count: ", this.invokeCount++);
     return this.http.get<Dish[]>(baseURL + 'dishes')
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getDish(id: number): Observable<Dish> {
+    console.log("Invoke count: ", this.invokeCount++);
     return this.http.get<Dish>(baseURL + 'dishes/' + id)
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getFeaturedDish(): Observable<Dish> {
+    console.log("Invoke count: ", this.invokeCount++);
     return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]))
       .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
   getDishIds(): Observable<number[] | any> {
+    console.log("Invoke count: ", this.invokeCount++);
     return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)))
       .pipe(catchError(error => error));
   }
