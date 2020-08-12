@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex fxFlexOffset="20px" class="form-size" *ngIf="showFeedbackForm" [@expand]>
     <h3>Send us your Feedback</h3>
     <p> Value: {{ feedbackForm.value | json }} </p>
     <p> Status: {{ feedbackForm.status | json }} </p>
@@ -88,5 +88,11 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+  </div>
+  <div fxFlex *ngIf="showProgressSpinner" [@expand]>
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div fxFlex *ngIf="showReturnedFeedback" [@expand]>
+    <p>{{feedback | json }}</p>
   </div>
 </div>

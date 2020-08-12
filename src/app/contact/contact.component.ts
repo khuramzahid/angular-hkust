@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // ViewChild gives access to child DOM elements
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 
 @Component({
@@ -14,7 +14,8 @@ import { FeedbackService } from '../services/feedback.service';
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
@@ -24,6 +25,9 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup; // Form model that will host the reactive form
   feedback: Feedback; // data model for holding states
   contactType = ContactType;
+  showFeedbackForm: Boolean = true;
+  showProgressSpinner: Boolean = false;
+  showReturnedFeedback: Boolean = false;
 
   formErrors = {
     'firstname': '',
@@ -78,13 +82,36 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.showFeedbackForm = false;
+    this.showProgressSpinner = true;
+    this.showReturnedFeedback = false;
+
     this.feedback = this.feedbackForm.value; // directly equating only because coincidently the structures match.
     this.feedbackservice.submitFeedback(this.feedback)
       .subscribe(feedback => {
+        this.feedback = feedback;
+
+        this.showFeedbackForm = false;
+        this.showProgressSpinner = false;
+        this.showReturnedFeedback = true;
+
+        setTimeout(() => {
+          this.feedback = null;
+
+          this.showFeedbackForm = true;
+          this.showProgressSpinner = false;
+          this.showReturnedFeedback = false;
+
+        }, 5000);
         console.log(feedback);
       },
       errmess => { 
         console.log(errmess);
+        this.feedback = null;
+        this.showFeedbackForm = true;
+        this.showProgressSpinner = false;
+        this.showReturnedFeedback = false;
       });
     this.feedbackForm.reset({
       firstname: '',
