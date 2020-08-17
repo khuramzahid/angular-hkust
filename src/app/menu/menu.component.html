@@ -6,12 +6,16 @@
     <div>
       <h3>Menu</h3>
       <hr>
+      <mat-form-field>
+        <mat-label></mat-label>
+        <input [(ngModel)] = "filterDish" placeholder="Filter Dish">
+      </mat-form-field>
     </div>
   </div>
 
   <div fxFlex *ngIf="dishes" [@expand]>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]" appHighlight>
+      <mat-grid-tile *ngFor="let dish of dishes | menuFilter: filterDish" [routerLink]="['/dishdetail', dish.id]" appHighlight>
         <!-- appHighlight is a custom attribute directive that we have made. It is being applied as all other attribute directives. -->
         <!-- *ngFor has for...of structure, which gives access to elements of array, not index. ES6 has 2 kinds of for loops added, for...of, for...in. -->
         <img height="200px" src="{{ baseURL + dish.image }}" alt={{dish.name}}>
@@ -22,6 +26,7 @@
     </mat-grid-list>
   </div>
   <app-spinner fxFlex [hidden]="dishes || errMess"></app-spinner>
+  <!-- [hidden] is an example of property binding. -->
   <div fxFlex *ngIf="errMess">
     <h2>Error</h2>
     <h4>{{errMess}}</h4>

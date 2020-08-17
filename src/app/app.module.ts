@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms'; // also needed for ngModel directive used in two-way binding
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -36,7 +36,9 @@ import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { FeedbackService } from './services/feedback.service';
 import { HighlightDirective } from './directives/highlight.directive';
-import { SpinnerComponent } from './spinner/spinner.component'; // Belongs to this component and nested components (Declarations array in @NgModule decorator). 
+import { SpinnerComponent } from './spinner/spinner.component';// Belongs to this component and nested components (Declarations array in @NgModule decorator).
+import { CustompipePipe } from './pipes/custompipe.pipe';
+import { MenuFilterPipe } from './pipes/menu-filter.pipe';  
 // Component within a component.
 
 // declarations is the array that contains the components that belong to this module.
@@ -55,7 +57,9 @@ import { SpinnerComponent } from './spinner/spinner.component'; // Belongs to th
     ContactComponent,
     LoginComponent,
     HighlightDirective,
-    SpinnerComponent
+    SpinnerComponent,
+    CustompipePipe,
+    MenuFilterPipe
   ],
   imports: [
     BrowserModule,
