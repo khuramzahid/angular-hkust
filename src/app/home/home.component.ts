@@ -54,7 +54,10 @@ export class HomeComponent implements OnInit {
     this.promoLoadingMessage = "Loading Featured Promotion...";
     this.leaderLoadingMessage = "Loading Featured Leader...";
 
-    
+  }
+  onNotify(message: string): void {
+    //debugger;
+    console.log(message , " spinner Initialized.");
   }
 
 }
