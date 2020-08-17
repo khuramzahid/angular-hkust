@@ -18,7 +18,7 @@
     </p>
   </mat-card-content>
 </mat-card>
-<app-spinner fxFlex [hidden]="dish || dishErrMess"></app-spinner>
+<app-spinner fxFlex [hidden]="dish || dishErrMess" [textToDisplay]="dishLoadingMessage"></app-spinner>
 <div fxFlex *ngIf="dishErrMess">
   <h2>Error</h2>
   <h4>{{dishErrMess}}</h4>
@@ -37,7 +37,7 @@
     </p>
   </mat-card-content>
 </mat-card>
-<app-spinner fxFlex [hidden]="promotion || promotionErrMess"></app-spinner>
+<app-spinner fxFlex [hidden]="promotion || promotionErrMess" [textToDisplay]="promoLoadingMessage"></app-spinner>
 <div fxFlex *ngIf="promotionErrMess">
   <h2>Error</h2>
   <h4>{{promotionErrMess}}</h4>
@@ -56,7 +56,7 @@
     </p>
   </mat-card-content>
 </mat-card>
-<app-spinner fxFlex [hidden]="leader || leaderErrMess"></app-spinner>
+<app-spinner fxFlex [hidden]="leader || leaderErrMess" [textToDisplay]="leaderLoadingMessage"></app-spinner>
 <div fxFlex *ngIf="leaderErrMess">
   <h2>Error</h2>
   <h4>{{leaderErrMess}}</h4>

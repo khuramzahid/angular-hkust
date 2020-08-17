@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent {
-  textToDisplay: string = "Loading . . . Please Wait";
+  @Input() textToDisplay: string = "Loading . . . Please Wait.";
 }
-// Back ticks`` allow multiple strings
+// Back ticks`` allow multiple line of strings
