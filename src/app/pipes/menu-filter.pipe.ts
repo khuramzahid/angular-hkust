@@ -6,7 +6,7 @@ import { Dish } from '../shared/dish';
 export class MenuFilterPipe implements PipeTransform {
 
   transform(value: Dish[], filterString: string): any {
-    debugger;
+    //debugger;
     let filteredMenu;
     if(filterString == null || filterString == "")
       return value;
