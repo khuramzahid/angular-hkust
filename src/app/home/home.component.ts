@@ -35,7 +35,15 @@ export class HomeComponent implements OnInit {
   constructor(private dishservice: DishService,
     private promotionservice: PromotionService,
     private leaderservice: LeaderService,
-    @Inject('BaseURL') private baseURL) { }
+    @Inject('BaseURL') private baseURL) {
+      /*
+      "constructor(private dishservice: DishService) {}" is short hand syntax for the following code:
+      private dishservice: DishService;
+      constructor(injectedDishService: DishService) {
+        this.dishservice = injectedDishService;
+      }
+      */
+    }
 
   ngOnInit() {
     this.dishservice.getFeaturedDish()

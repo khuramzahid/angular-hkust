@@ -63,4 +63,8 @@ RxJS is an implementation of Reactive programming in JavaScript.
 Reactive Programming is based mostly on the Observer Design Pattern and very less on the Iterative Design Pattern.
 of() converts a dish object into a read stream.
 pipe() is used to wait for that stream to form a chunk of data, and then dispatch after a 2 second delay.
+
+Right now, all our services are registered at the root, which means that single instances for entire application.
+We have to option to register a service at different components, for having singletons available for specific component hierarchy.
+
 */
