@@ -29,7 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'; // HttpClient is already a service registered as an injectable service in this imported module.
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
@@ -44,7 +44,7 @@ import { MenuFilterPipe } from './pipes/menu-filter.pipe';
 // declarations is the array that contains the components that belong to this module.
 // imports are the external modules that are made available to all the components belonging to this module.
 // bootstrap is the startup component of the application. That component must have its selector in index.html
-
+// Angular's injector only provides and maintains single instances of the services mentioned in the provider array.
 @NgModule({
   declarations: [
     AppComponent,

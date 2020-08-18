@@ -48,7 +48,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.dishservice.getFeaturedDish()
       .subscribe(dish => this.dish = dish,
-        errmess => this.dishErrMess = <any>errmess);
+        errmess => this.dishErrMess = <any>errmess,
+        () => console.log("Observable sequence completion"));
+    // this.dishservice.getFeaturedDish() returns an object. That object also has a method to cancel request.
+    // <any>errmess is typecasting to 'any' type
 
     this.promotionservice.getFeaturedPromotion()
       .subscribe(promotion => this.promotion = promotion,
