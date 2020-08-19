@@ -15,3 +15,4 @@ import { routes } from './routes';
 export class AppRoutingModule { }
 
 // Imported by app.module.ts
+// RouterModule already the 'ActivatedRoute' service registered as a provider in it

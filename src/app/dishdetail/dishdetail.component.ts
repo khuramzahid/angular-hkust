@@ -4,7 +4,7 @@ import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { visibility } from '../animations/app.animation';
 import { flyInOut, expand } from '../animations/app.animation';
@@ -55,9 +55,11 @@ export class DishdetailComponent implements OnInit {
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private fb: FormBuilder,
     @Inject('BaseURL') private baseURL) {
+      // ActivatedRoute is an injected service, whose instance is provided by angular which is used here to get param passed in the URL
       this.createForm();
     }
   
@@ -130,7 +132,7 @@ export class DishdetailComponent implements OnInit {
     this.route.params
       .pipe(switchMap((params: Params) => { 
         this.visibility = 'hidden'; // Hiding the current shown dish.
-        return this.dishservice.getDish(+params['id']); 
+        return this.dishservice.getDish(+params['id']); // the + is a JS shortcut to convert string to a numeric value
       }))
       .subscribe(dish => { 
         this.dish = dish; 
@@ -146,6 +148,10 @@ export class DishdetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  gotoMenu(): void {
+    this.router.navigate(['/menu']);
   }
 
   setPrevNext(dishId: string) {
