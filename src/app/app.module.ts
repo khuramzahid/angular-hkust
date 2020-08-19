@@ -38,7 +38,8 @@ import { FeedbackService } from './services/feedback.service';
 import { HighlightDirective } from './directives/highlight.directive';
 import { SpinnerComponent } from './spinner/spinner.component';// Belongs to this component and nested components (Declarations array in @NgModule decorator).
 import { CustompipePipe } from './pipes/custompipe.pipe';
-import { MenuFilterPipe } from './pipes/menu-filter.pipe';  
+import { MenuFilterPipe } from './pipes/menu-filter.pipe';
+import { Four0fourComponent } from './four0four/four0four.component';  
 // Component within a component.
 
 // declarations is the array that contains the components that belong to this module.
@@ -59,7 +60,8 @@ import { MenuFilterPipe } from './pipes/menu-filter.pipe';
     HighlightDirective,
     SpinnerComponent,
     CustompipePipe,
-    MenuFilterPipe
+    MenuFilterPipe,
+    Four0fourComponent
   ],
   imports: [
     BrowserModule,
